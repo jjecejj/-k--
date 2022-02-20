@@ -7,13 +7,13 @@ def line(x, y, z, x1, y1, z1):
     return ((x - x1) ** 2 + (y - y1) ** 2 + (z - z1) ** 2) ** 0.5
 
 class Klaster:
-    def __init__(self, x, y, z, k, N_clust):
+    def __init__(self, x, y, z, N_clust):
         self.x = x
         self.y = y
         self.z = z
-        self.k = k
         self.N_clust = N_clust
-        random.seed(k+1)
+
+        random.seed(1)#Зерно генератора случайных чисел
 
         A = []
         for i in range(0, N_clust):
@@ -79,12 +79,12 @@ class Klaster:
             if(min(M)==line(x,y,z,self.A[i][0],self.A[i][1],self.A[i][2])):return i
 
 X,Y,Z=[],[],[]
-for i in range(0,1000):
+for i in range(0,500):
     X.append(random.randint(0,100))
     Y.append(random.randint(0,100))
     Z.append(random.randint(0,100))
 
-sys = Klaster(np.array(X), np.array(Y), np.array(Z), 0, 3)#Входные Данные
+sys = Klaster(np.array(X), np.array(Y), np.array(Z), 3)#Входные Данные
 print(sys.what_cluster(59,46,79))
 print(sys.get_indexes())
 sys.plot()
